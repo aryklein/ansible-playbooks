@@ -1,0 +1,48 @@
+---
+# default values
+default_groups: []
+default_shell: /bin/bash
+create_home: yes
+remove_home: yes
+
+# list of users to add
+users_to_add: []
+
+# list of users to del
+users_to_del: []
+
+# list of groups to add
+groups_to_add: []
+
+# list of groups to del
+groups_to_del: []
+
+
+# An example of a user to add entry. Everything except 'name' and 'pub_keys' is optional
+# users_to_add:
+#   - name: user
+#     comment: "User Name"
+#     shell: /bin/bash
+#     uid: 1010
+#     groups:
+#       - group1
+#       - group2
+#       - group3
+#     pub_keys:
+#       - xxx
+#       - yyy
+#
+# An example a user to del entry. Everything except 'name' is optional
+# users_to_del:
+#   - name: user
+#   - remove_home: no
+#
+# An example of group to add entry. Everything except 'name' is optional
+# groups_to_add:
+#   - name: group
+#   - gid: 1020
+#   - system: no
+#
+# An example of group to del entry. Only 'name' is needed
+# groups_to_del:
+#   - name: group

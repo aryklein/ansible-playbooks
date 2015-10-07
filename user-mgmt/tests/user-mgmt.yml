@@ -1,0 +1,39 @@
+---
+
+- hosts: localhost
+  become: yes
+  become_method: sudo
+
+  vars:
+    create_home: yes
+    users_to_add:
+      - name: ary2
+        comment: "Ary2 Kleinerman"
+        shell: /bin/bash
+        groups: 
+          - sudo
+          - wheel
+        pub_keys:
+          - ssh-rsa AAAAB3NzaC1yc2EAABADAQABAAABAQCqn3ZK9b7SEaX65ICsWR8pA1JA7IVWv1CjhWyiGLgQX/pK4tlkPtOoO/a6oSSxCoqGxa/bni9LYNUxuSosnKbajthSRUPqnM+SZBY422CEPc8VvetkgCs/ET3Utu/4DDB0UVVRloRvdCDK8m9PCx6rcHYDV/9e0gIXaLT/u5Z3y88WLpgjhl4hdpX+JxfFZ26Y9Or/lGbGW5LRd5aPlOMJKnafIImvvhjGxRswAsPTECTISJwe6GKgHJrn8/0Lw3wcoU2EHwoRS88QrLgAtQW2wXRb9X0Fec3wsy1V2VBNU/uOZor7o/C0P1tJ57Yberam3x7vLJVSBjFdOuzUXjX ary@archux
+    
+      - name: ary3
+        comment: "Ary3 Kleinerman"
+        uid: 1014
+        groups:
+          - test 
+        pub_keys:
+          - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCq13ZK9b7SEaX65ICsWR8pA1JA7IVWv1CjhWyiGLgQX/pK4tlkPtOoO/a6oSSxCoqGxa/bni9LYNUxuSosnKbajthSRUPqnM+SZBY422CEPc8VvetkgCs/ET3Utu/4DDB0UVVRloRvdCDK8m9PCx6rcHYDV/9e0gIXaLT/u5Z3y88WLpgjhl4hdpX+JxfFZ26Y9Or/lGbGW5LRd5aPlOMJKnafIImvvhjGxRswAsPTECTISJwe6GKgHJrn8/0Lw3wcoU2EHwoRS88QrLgAtQW2wXRb9X0Fec3wsy1V2VBNU/uOZor7o/C0P1tJ57Yberam3x7vLJVSBjFdOuzUXjX ary@archux
+    
+    users_to_del:
+      - name: ary4
+        remove_home: no
+
+    groups_to_add:
+      - name: test
+        system: yes
+
+    groups_to_del:
+      - test2
+
+  roles:
+    - user-mgmt

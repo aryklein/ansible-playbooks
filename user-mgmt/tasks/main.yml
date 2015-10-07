@@ -1,0 +1,37 @@
+---
+- name: remove user(s)
+  user: name="{{item.name}}"
+        remove="{{item.remove_home | default(remove_home)}}"
+        state=absent
+  with_items: "{{users_to_del}}"
+
+- name: remove group(s)
+  group: name="{{item}}"
+         state=absent
+  with_items: "{{groups_to_del}}"
+
+- name: create group(s)
+  group: name="{{item.name}}"
+         state=present
+         gid="{{item.gid | default(omit)}}"
+         system="{{item.system | default('no')}}"
+  with_items: "{{groups_to_add}}"
+
+- name: Add user(s)
+  user: name="{{item.name}}"
+        comment="{{item.comment | default(None)}}"
+        uid="{{item.uid | default(omit)}}"
+        shell="{{item.shell | default(default_shell)}}"
+        groups="{{item.groups | default(default_groups) | join(',')}}"
+        createhome="{{create_home}}"
+  with_items: "{{users_to_add}}"
+
+- name: add SSH public key(s)
+  authorized_key: user="{{item.0.name}}" key="{{item.1}}"
+  with_subelements:
+    - users_to_add
+    - pub_keys
+  when: item.1 is defined and create_home
+
+
+
