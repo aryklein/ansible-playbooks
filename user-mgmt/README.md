@@ -1,4 +1,4 @@
-# User an group management role
+# User and group management role for Ansible
 A simple Ansible role to manipulate users and groups
 
 ## Role configuration
