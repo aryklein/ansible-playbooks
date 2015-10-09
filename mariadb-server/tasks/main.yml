@@ -1,16 +1,50 @@
 ---
 
+- name: Ensure to have installed software-properties-common
+  apt: name=software-properties-common state=present update_cache=yes
+
 - name: Add official MariaDB apt key
   apt_key: id={{mariadb_repo_key_id}} keyserver={{mariadb_repo_key_url}} state=present
-  when: ansible_os_family == 'Ubuntu' and ansible_distribution_version == '14.04'
+  when: ansible_os_family == "Ubuntu" 
 
 - name: Add official MariaDB 10.1 repository for Ubuntu LTS 14.04
   apt_repository: repo="{{mariadb_repo}}" state=present update_cache=yes
-  when: ansible_os_family == 'Ubuntu' and ansible_distribution_version == '14.04'
+  when: ansible_os_family == "Ubuntu"
 
-- name: Installing MariaDB Server package
+- name: Installing MariaDB Server packages
   apt: name={{ item }} state=present update_cache=yes
   with_items:
-    - "{{mariadb_server_package}}"
-  notify: stop mariadb
+    - "{{ mariadb_server_package }}"
+    - python-mysqldb
+  notify: restart mariadb
+
+# Ansible mysql_secure_installation
+
+- name: Delete anonymous MariaDB server user
+  mysql_user: user="ary" state=present
+
+- name: create MariaDB root pass
+  command: /usr/bin/openssl rand -base64 16
+  register: mysql_root_passwd
+
+- name: Update MariaDB root passwd
+  mysql_user: name=root
+              host={{ item }}
+              password={{ mysql_root_passwd.stdout }}
+              config_file=/root/.my.cnf
+  with_items:
+    - "{{ ansible_hostname }}"
+    - 127.0.0.1
+    - ::1
+    - localhost
+
+- name: Copy my.cnf file with user root and passwd credentials
+  template: src=my.cnf.j2 dest=/root/.my.cnf owner=root group=root mode=0600
+  notify: restart mariadb
+
+- name: Delete anonymous MariaDB server user
+  mysql_user: user="" state=absent
+
+- name: Remove the MariaDB test database
+  mysql_db: db=test state=absent
 

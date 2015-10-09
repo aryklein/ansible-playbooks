@@ -1,5 +1,6 @@
 # User and group management role for Ansible
-A simple Ansible role to manipulate users and groups
+A simple Ansible role to manipulate Linux users and groups. It works with many different Linux
+distributions.
 
 ## Role configuration
 
