@@ -3,18 +3,18 @@
   pacman: name="{{item}}" state=latest
   with_items:
     - vim
-  when: ansible_os_family == "Archlinux"
+  when: ansible_distribution == "Archlinux"
 
 - name: Make sure Vim is installed on Ubuntu/Debian
   apt: name="{{item}}" state=latest
   with_items:
     - vim
-  when: ansible_os_family == "Ubuntu" or ansible_os_family == "Debian"
+  when: ansible_os_family == "Debian"
 
 - name: Global vim config on Archlinux
   copy: src=vimrc-arch dest=/etc/vimrc owner=root group=root mode="u=rw,g=r,o=r"
-  when: ansible_os_family == "Archlinux"
+  when: ansible_distribution == "Archlinux"
 
 - name: Global vim config on Archlinux
   copy: src=vimrc-deb dest=/etc/vim/vimrc owner=root group=root mode="u=rw,g=r,o=r"
-  when: ansible_os_family == "Ubuntu" or ansible_os_family == "Debian"
+  when: ansible_os_family == "Debian"
