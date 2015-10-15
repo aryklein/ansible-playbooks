@@ -1,9 +1,0 @@
----
-
-- hosts: test
-  user: ubuntu
-  become: yes
-  become_method: sudo
-
-  roles:
-    - vim
