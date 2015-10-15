@@ -1,27 +1,25 @@
 ---
 # This role contains common tasks that are perfomed on all Debian-based nodes.
 
-tasks:
+- name: Update all packages to the latest version
+  apt: upgrade=dist update_cache=yes
 
-  - name: Update all packages to the latest version
-    apt: upgrade=dist update_cache=yes
+- name: Remove password prompt for sudo
+  lineinfile: "dest=/etc/sudoers state=present regexp='^%sudo' line='%sudo ALL=(ALL) NOPASSWD: ALL'"
 
-  - name: Remove password prompt for sudo
-    lineinfile: dest=/etc/sudoers state=present regexp='^%sudo' line='%sudo ALL=(ALL) NOPASSWD: ALL' validate='visudo -cf %s'
+# Install and configure Vim 
+- name: Make sure Vim is installed
+  apt: name=vim state=latest
 
-  # Install and configure Vim 
-  - name: Make sure Vim is installed
-    apt: name=vim state=latest
+- name: Configure vimrc file
+  copy: src=vimrc-deb dest=/etc/vim/vimrc owner=root group=root mode="u=rw,g=r,o=r"
 
-  - name: Configure vimrc file
-    copy: src=vimrc-deb dest=/etc/vim/vimrc owner=root group=root mode="u=rw,g=r,o=r"
+# Install and configure NTP
+- name: Install ntp 
+  apt: name=ntp state=latest
 
-  # Install and configure NTP
-  - name: Install ntp 
-    apt: name=ntp state=latest
-
-    name: Configure ntp file
-    template: src=ntp.conf.j2 dest=/etc/ntp.conf
-    tags: ntp
-    notify: restart ntp 
+- name: Configure ntp file
+  template: src=ntp.conf.j2 dest=/etc/ntp.conf
+  tags: ntp
+  notify: restart ntp 
 
