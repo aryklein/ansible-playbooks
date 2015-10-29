@@ -2,3 +2,4 @@
 
 ntpserver1: 0.south-america.pool.ntp.org
 ntpserver2: 1.south-america.pool.ntp.org
+timezone: 'America/Argentina/Cordoba'

@@ -6,3 +6,5 @@ Common tasks performed in all Debian-based distro after a new instance deploy
 * Remove password prompt for sudo users
 * Install the vim editor and configure the global vimrc file
 * Install NTP and configure with the *nameserver* variable
+* Configure the timezone
+* Colored prompt for new users and root
