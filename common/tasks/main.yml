@@ -20,7 +20,6 @@
 
 - name: Configure ntp file
   template: src=ntp.conf.j2 dest=/etc/ntp.conf
-  tags: ntp
   notify: restart ntp 
 
 # Set Time Zone
@@ -31,8 +30,7 @@
         group=root
         mode=0644
         backup=yes
-  notify:
-    - update timezone
+  notify: update timezone
 
 # Colored prompt for new users
 - name: Set colored prompt
