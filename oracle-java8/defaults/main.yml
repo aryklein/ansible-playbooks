@@ -1,0 +1,12 @@
+---
+
+jdk_version: "8"
+jdk_tarball_url: "http://download.oracle.com/otn-pub/java/jdk/8u102-b14/jdk-8u102-linux-x64.tar.gz"
+jdk_tarball_file: "jdk-8u102-linux-x64.tar.gz"
+jdk_download_path: "/tmp"
+jdk_install_dir: "/opt"
+jdk_original_dir: "jdk1.8.0_102"
+jdk_dir: "{{ jdk_install_dir }}/jdk{{ jdk_version }}"
+java_bin: "{{ jdk_dir }}/bin/java"
+javac_bin: "{{ jdk_dir }}/bin/javac"
+jar_bin: "{{ jdk_dir }}/bin/jar"

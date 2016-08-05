@@ -1,0 +1,38 @@
+---
+
+- name: upgrade all packages
+  yum: name=* state=latest
+
+- name: install some necesary packages
+  yum: state=installed name={{ item }}
+  with_items:
+    - bash-completion
+    - wget
+
+- name: get JDK tarball
+  get_url:
+    url="{{ jdk_tarball_url }}"
+    headers="Cookie:oraclelicense=accept-securebackup-cookie"
+    dest="{{ java_download_path }}/{{ jdk_tarball_file }}"
+
+- name: install JDK via tarball file
+  unarchive:
+    src: "{{ jdk_download_path }}/{{ jdk_tarball_file }}"
+    dest: "{{ jdk_install_dir }}"
+    copy: no
+
+
+- name: change JDK directory name
+  command: mv {{ jdk_install_dir }}/{{ jdk_original_dir }} {{ jdk_dir }}
+
+- name: java alternatives
+  alternatives: name=java link=/usr/bin/java path={{ java_bin }}
+
+- name: javac alternatives
+  alternatives: name=javac link=/usr/bin/javac path={{ javac_bin }}
+
+- name: jar alternatives
+  alternatives: name=jar link=/usr/bin/jar path={{ jar_bin }}
+
+- name: set jar alternatives
+  alternatives: name=jar path={{ jar_bin }}

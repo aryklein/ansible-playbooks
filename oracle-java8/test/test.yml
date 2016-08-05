@@ -1,0 +1,7 @@
+---
+- hosts: localhost
+  method: sudo
+  become_sudo: yes
+
+  roles:
+    - oracle-java8
