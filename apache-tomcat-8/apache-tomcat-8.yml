@@ -1,0 +1,43 @@
+---
+
+- hosts: aws-tomcat
+  user: ec2-user
+  become: yes
+  become_method: sudo
+
+  vars:
+    tomcat_tarball_url: "http://mirrors.nxnethosting.com/apache/tomcat/tomcat-8/v8.5.4/bin/apache-tomcat-8.5.4.tar.gz"
+    tomcat_download_path: "/tmp"
+    tomcat_install_path: "/opt"
+    tomcat_tarball_file: "apache-tomcat-8.5.4.tar.gz"
+    tomcat_original_dir: "apache-tomcat-8.5.4"
+    tomcat_dir: "/opt/tomcat8"
+    init_mem_allocation: "Xms128m"
+    max_mem_size: "Xmx256m"
+
+
+  roles:
+    - oracle-java8
+
+  tasks:
+    - name: get Tomcat tarball
+      get_url:
+        url: "{{ tomcat_tarball_url }}"
+        dest: "{{ tomcat_download_path }}/{{ tomcat_tarball_file }}"
+
+    - name: install Tomcat via tarball file
+      unarchive:
+        src: "{{ tomcat_download_path }}/{{ tomcat_tarball_file }}"
+        dest: "{{ tomcat_install_path }}"
+        copy: no
+
+    - name: change Tomcat directory name
+      command: mv {{ tomcat_install_path }}/{{ tomcat_original_dir }} {{ tomcat_dir }}
+
+    - name: set JAVA memory allocation
+      lineinfile: 
+        dest: "{{ tomcat_dir }}/bin/catalina.sh"
+        regexp: '^(\s*)(CATALINA_OPTS=.*)\"'
+        line: '\1\2 -{{ init_mem_allocation }} -{{ max_mem_size }}"'
+        backrefs: yes
+
