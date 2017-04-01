@@ -1,7 +1,12 @@
 ---
+
 - name: Deploy Docker host in Ubuntu 16.04 LTS
   hosts: test
   remote_user: root
 
+  vars_files:
+    - vars/users_to_add.yml
+
   roles:
     - common
+    - user-mgmt

@@ -1,0 +1,12 @@
+---
+
+users_to_add:
+  - name: ary
+    comment: "Ary Kleinerman"
+    shell: /bin/bash
+    groups:
+      - sudo
+    pub_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDK2img701BG8XkOuU6HajbJeSUrdrL5jhW7UkFa5sQWuTL4FlYpgrwEfOt5+ats9wxKyqELbmtadafdUzsoIf/dlw+ZEqFMw+HzA7WYnJm3biiVicUOy7bJzWl1WZeuaE4a9rbfB/8ZKK/L5j+Ooj8Lv+d3b8y87SC4lRPQUB2zgRpHpGbkTVwkP2fDxTzeWuxUV4FhBrKNni7eq2zZkVn9LTFfuQ/+2XrJQp5nuMDhWdbPNnWVApzhK1kcL1nuBjJptLfQZ1AUb6xJDSPwrqamgqvgcKr5K4lk1rSuzcff5IAw/BNrMp0sWgzwkjBDTE/va67dUrtocd8fTzuwf0p ary@tesla
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCqn3ZK9b7SEaX65ICsWR8pA1JA7IVWv1CjhWyiGLgQX/pK4tlkPtOoO/a6oSSxCoqGxa/bni9LYNUxuSosnKbajthSRUPqnM+SZBY422CEPc8VvetkgCs/ET3Utu/4DDB0UVVRloRvdCDK8m9PCx6rcHYDV/9e0gIXaLT/u5Z3y88WLpgjhl4hdpX+JxfFZ26Y9Or/lGbGW5LRd5aPlOMJKnafIImvvhjGxRswAsPTECTISJwe6GKgHJrn8/0Lw3wcoU2EHwoRS88QrLgAtQW2wXRb9X0Fec3wsy1V2VBNU/uOZor7o/C0P8itJ57Yberam3x7vLJVSBjFdOuzUXjz ary@archux
+
