@@ -1,6 +1,6 @@
 ---
 
-- hosts: aws-tomcat
+- hosts: tomcat-server
   user: ec2-user
   become: yes
   become_method: sudo
