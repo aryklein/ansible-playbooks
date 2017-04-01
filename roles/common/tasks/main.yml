@@ -14,23 +14,9 @@
 - name: Configure vimrc file
   copy: src=etc/vim/vimrc dest=/etc/vim/vimrc owner=root group=root mode="u=rw,g=r,o=r"
 
-# Install and configure NTP
-- name: Install ntp 
-  apt: name=ntp state=latest
-
-- name: Configure ntp file
-  template: src=ntp.conf.j2 dest=/etc/ntp.conf
-  notify: restart ntp 
-
 # Set Time Zone
-- name: Set timezone variables
-  copy: content={{ timezone  }}
-        dest=/etc/timezone
-        owner=root
-        group=root
-        mode=0644
-        backup=yes
-  notify: update timezone
+- name: Set timezone
+  timezone: name: {{ timezone }}
 
 # Colored prompt for new users
 - name: Set colored prompt
