@@ -16,7 +16,7 @@
 
 # Set Time Zone
 - name: Set timezone
-  timezone: name: {{ timezone }}
+  timezone: name={{ timezone }}
 
 # Colored prompt for new users
 - name: Set colored prompt
