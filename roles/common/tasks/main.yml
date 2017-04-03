@@ -20,5 +20,5 @@
 
 # Colored prompt for new users
 - name: Colored prompt for new users
-  lineinfile: "path=/etc/skel/.bashrc state=present regexp='^#force_color_prompt=yes' line='force_color_prompt=yes'"
+  lineinfile: dest=/etc/skel/.bashrc state=present regexp='^#force_color_prompt=yes' line='force_color_prompt=yes'
 
