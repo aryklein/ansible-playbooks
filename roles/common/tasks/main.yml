@@ -19,5 +19,6 @@
   timezone: name={{ timezone }}
 
 # Colored prompt for new users
-- name: Set colored prompt
-  lineinfile: "dest=/etc/skel/.bashrc state=present regexp='^#force_color_prompt=yes' line='force_color_prompt=yes'"
+- name: Colored prompt for new users
+  lineinfile: "path=/etc/skel/.bashrc state=present regexp='^#force_color_prompt=yes' line='force_color_prompt=yes'"
+
