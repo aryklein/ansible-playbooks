@@ -1,0 +1,13 @@
+---
+
+- name: Install NTP server
+  apt: 
+    name: chrony
+    state: present
+
+
+- name: Allow other nodes to query NTP
+  lineinfile: 
+    path: /etc/chrony/chrony.conf
+    insertafter: '^#allow'
+    line: allow {{ network_addr }}

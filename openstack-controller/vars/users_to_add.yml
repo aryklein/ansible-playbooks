@@ -1,0 +1,18 @@
+---
+
+users_to_add:
+  - name: ary
+    comment: "Ary Kleinerman"
+    shell: /bin/bash
+    groups:
+      - sudo
+    pub_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCqn3ZK9b7SEaX65ICsWR8pA1JA7IVWv1CjhWyiGLgQX/pK4tlkPtOoO/a6oSSxCoqGxa/bni9LYNUxuSosnKbajthSRUPqnM+SZBY422CEPc8VvetkgCs/ET3Utu/4DDB0UVVRloRvdCDK8m9PCx6rcHYDV/9e0gIXaLT/u5Z3y88WLpgjhl4hdpX+JxfFZ26Y9Or/lGbGW5LRd5aPlOMJKnafIImvvhjGxRswAsPTECTISJwe6GKgHJrn8/0Lw3wcoU2EHwoRS88QrLgAtQW2wXRb9X0Fec3wsy1V2VBNU/uOZor7o/C0P8itJ57Yberam3x7vLJVSBjFdOuzUXjz ary@archux
+
+  - name: jkleinerman
+    comment: "Jorge Kleinerman"
+    shell: /bin/bash
+    groups:
+      - sudo
+    pub_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCsW06C6htr2ygcQBH+FFkMD48D2Hp3KlvEYjQN9ZNix6aCCcIDWnorTIoWi/dEWm+C9tKZ+aSaimiL9FyegJ81Tw0R7fIk/IizWJbHofcDGfl6rdLSDMmGfXHMm1eG4j0ngP7C9tczutcgVe6rcAOZt/nuHit8xg2xrczyYH1cseSHfVp34qw+ip6GUjCy8RbC7fis6Yh04iaai3pMdZCM/VmF2+DQEHgsMJwg69hXbzMrY43u/yJLffkjHtMDcN4xbc4g5IpXL5+HdbAOZO6kSnhwdpyDLmCV5+eEJDXX/ed/Cc4Y1BU0ZkffBkc1GC3vFD+qRXphulPu/eX9pZ0f jkleinerman@fito

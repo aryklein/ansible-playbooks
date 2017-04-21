@@ -1,0 +1,6 @@
+---
+
+provider_iface: enp0s25
+network_addr: 10.10.10.0/24
+controller_ip: 10.10.10.210
+compute1_ip: 10.10.10.211

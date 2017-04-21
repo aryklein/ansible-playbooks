@@ -1,0 +1,25 @@
+---
+
+- name: Set network interfaces
+  blockinfile:
+    path: /etc/network/interfaces
+    state: present
+    block: |
+      auto 
+      iface {{ provider_iface }} inet manual
+        up ip link set dev $IFACE up
+        down ip link set dev $IFACE down
+
+- name: Set hosts file
+  blockinfile:
+    path: /etc/hosts
+    state: present
+    block: |
+      {{ controller_ip }}      controller
+      {{ compute1_ip }}      compute1 
+
+
+- name: Remove loopback IP address 127.0.1.1 from hosts file
+  lineinfile: path=/etc/hosts regexp='^127\.0\.1\.1' state=absent
+
+

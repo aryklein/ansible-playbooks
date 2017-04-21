@@ -1,0 +1,20 @@
+---
+
+- name: Deploy Openstack controller node in Ubuntu 16.04 LTS
+  hosts: openstack-controller
+  remote_user: ary
+  become: yes
+  become_method: sudo
+
+  vars_files:
+    - vars/users_to_add.yml
+    - vars/network.yml
+
+  roles:
+    - common
+    - user-mgmt
+
+  tasks:
+    - include: network.yml
+    - include: ntp.yml
+
