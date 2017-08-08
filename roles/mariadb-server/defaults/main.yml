@@ -1,9 +1,10 @@
 ---
-# MariaDB repository for Ubuntu 14.04 LTS
-mariadb_version: 10.1
-mariadb_repo_key_id: '1BB943DB'
+# MariaDB repository for Ubuntu 16.04 LTS
+#
+mariadb_version: 10.2
+mariadb_repo_key_id: '0xF1656F24C74CD1D8'
 mariadb_repo_key_url: 'keyserver.ubuntu.com'
-mariadb_repo: 'deb http://mirror.edatel.net.co/mariadb//repo/{{mariadb_version}}/ubuntu trusty main'
+mariadb_repo: 'deb [arch=amd64] http://mirror.ufscar.br/mariadb/repo/{{mariadb_version}}/ubuntu xenial main'
 
 # MariaDB packages
 mariadb_server_package: mariadb-server

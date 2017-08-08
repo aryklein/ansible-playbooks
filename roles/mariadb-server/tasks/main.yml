@@ -5,17 +5,17 @@
 
 - name: Add official MariaDB apt key
   apt_key: id={{mariadb_repo_key_id}} keyserver={{mariadb_repo_key_url}} state=present
-  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '14.04'
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '16.04'
 
-- name: Add official MariaDB 10.1 repository for Ubuntu LTS 14.04
+- name: Add official MariaDB 10.2 repository for Ubuntu LTS 16.04
   apt_repository: repo='{{ mariadb_repo }}' state=present update_cache=yes
-  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '14.04'
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '16.04'
 
 - name: Installing MariaDB Server packages
   apt: name={{ item }} state=present update_cache=yes
   with_items:
     - "{{ mariadb_server_package }}"
-    - python-mysqldb
+    - python3-mysqldb
   notify: restart mariadb
 
 
@@ -34,8 +34,6 @@
     - 127.0.0.1
     - ::1
     - localhost
-
-  tags:
 
 - name: Copy my.cnf file with user root and passwd credentials
   template: src=my.cnf.j2 dest=~/.my.cnf owner=root group=root mode=0600
