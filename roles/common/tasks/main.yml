@@ -12,9 +12,6 @@
 - name: Make sure Vim is installed
   apt: name=vim state=latest
 
-- name: Set background color for Vim
-  replace: path=/etc/vim/vimrc regexp='^"(set background=dark)' replace='\1'
-
 # Set Time Zone
 - name: Set timezone
   timezone: name={{ timezone }}
